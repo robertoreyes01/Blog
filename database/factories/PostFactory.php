@@ -18,6 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'slug' => $this->faker->unique()->slug(),
             'content' => $this->faker->paragraph(),
             'category' => $this->faker->word(),
             'published_at' => $this->faker->dateTime(),

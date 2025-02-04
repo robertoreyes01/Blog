@@ -1,11 +1,16 @@
 <x-app-layout>
     <h1>Formulario</h1>
     
-    <form action="/posts/{{$post->id}}" method="post">
+    <form action="{{route('posts.update', $post)}}" method="post">
         @csrf
         @method('PUT')
         <label for="title">
             Titulo:<input type="text" name="title" id="title" value="{{ $post->title }}">
+        </label>
+        <br>
+        <br>
+        <label for="slug">
+            Slug:<input type="text" name="slug" id="slug" value="{{ $post->slug }}">
         </label>
         <br>
         <br>

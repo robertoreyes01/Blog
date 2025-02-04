@@ -1,10 +1,15 @@
 <x-app-layout>
 <h1>Formulario</h1>
 
-<form action="/posts" method="post">
+<form action="{{route('posts.store')}}" method="post">
     @csrf
     <label for="title">
         Titulo:<input type="text" name="title" id="title">
+    </label>
+    <br>
+    <br>
+    <label for="slug">
+        Slug:<input type="text" name="slug" id="slug">
     </label>
     <br>
     <br>

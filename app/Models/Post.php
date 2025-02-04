@@ -11,6 +11,8 @@ class Post extends Model
     use HasFactory;
 
     // protected $table = 'posts';
+    // protected $fillable = ['title', 'slug', 'content', 'category'];
+    protected $guarded = ['is_active'];
 
     protected function casts(): array{
         return [
@@ -27,5 +29,10 @@ class Post extends Model
                 return ucfirst($value);
             }
         );
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
