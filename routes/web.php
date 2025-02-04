@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,16 @@ use function Pest\Laravel\post;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/', HomeController::class);
+
+Route::get('/post', [PostController::class, 'index']);
+Route::get('/post/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+Route::put('/posts/{post}', [PostController::class, 'update']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
 Route::get('prueba', function () {
     //Crear un nuevo post
