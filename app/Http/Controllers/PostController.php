@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
         // $post = new Post();
 
@@ -36,8 +37,13 @@ class PostController extends Controller
 
         // $post->save();
 
+        // $request->validate([
+        //     'title' => ['required'],['max:255'],
+        //     'slug' => 'required|unique:posts',
+        //     'content' => 'required',
+        //     'category' => 'required',
+        // ]);
         Post::create(request()->all());
-
         return redirect()->route('posts.index');
     }
 
@@ -58,8 +64,13 @@ class PostController extends Controller
 
         // $post->save();
 
+        $request->validate([
+            'title' => 'required|max:255',
+            'slug' => ['required'], ["unique:posts,slug,{post->id}"],
+            'content' => 'required',
+            'category' => 'required',
+        ]);
         $post->update($request->all());
-
         return redirect()->route('posts.show', $post);
     }
 
