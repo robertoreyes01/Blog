@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mi Blog</title>
 
-    {{-- <script src="https://cdn.tailwindcss.com/"></script> --}}
+    <script src="https://cdn.tailwindcss.com/"></script>
 </head>
 <body>
     <header></header>

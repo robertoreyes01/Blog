@@ -1,56 +1,86 @@
 <x-app-layout>
-    <h1>Formulario</h1>
-
-    {{-- @if ($errors->any())
-        <div>
-            <h2>Errores</h2>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Crear Nuevo Post</h1>
         </div>
-        
-    @endif --}}
 
-    <form action="{{route('posts.store')}}" method="post">
-        @csrf
-        <label for="title">
-            Titulo:<input type="text" name="title" id="title" value="{{old('title')}}">
-        </label>
-        @error('title')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <br>
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            @if ($errors->any())
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
+                    <h2 class="text-lg font-semibold text-red-700 mb-2">Errores</h2>
+                    <ul class="list-disc list-inside text-red-600">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        <br>
-        <label for="slug">
-            Slug:<input type="text" name="slug" id="slug" value="{{old('slug')}}">
-        </label>
-        @error('slug')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <br>
+            <form action="{{route('posts.store')}}" method="post" class="space-y-6">
+                @csrf
+                
+                <div>
+                    <label for="title" class="block text-sm font-medium text-gray-700 mb-1">
+                        Título
+                    </label>
+                    <input type="text" 
+                           name="title" 
+                           id="title" 
+                           value="{{old('title')}}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    @error('title')
+                        <p class="mt-1 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
 
-        <br>
-        <label for="category">
-            Categoria:<input type="text" name="category" id="category" value="{{old('category')}}">
-        </label>
-        @error('category')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <br>
+                <div>
+                    <label for="slug" class="block text-sm font-medium text-gray-700 mb-1">
+                        Slug
+                    </label>
+                    <input type="text" 
+                           name="slug" 
+                           id="slug" 
+                           value="{{old('slug')}}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    @error('slug')
+                        <p class="mt-1 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
 
-        <br>
-        <label for="content">
-            Contenido:<textarea name="content" id="content">{{old('content')}}</textarea>
-        </label>
-        @error('content')
-            <p><strong>{{$message}}</strong></p>
-        @enderror
-        <br>
-        
-        <br>
-        <button type="submit">Enviar</button>
-    </form>
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">
+                        Categoría
+                    </label>
+                    <input type="text" 
+                           name="category" 
+                           id="category" 
+                           value="{{old('category')}}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    @error('category')
+                        <p class="mt-1 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="content" class="block text-sm font-medium text-gray-700 mb-1">
+                        Contenido
+                    </label>
+                    <textarea name="content" 
+                              id="content" 
+                              rows="6"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">{{old('content')}}</textarea>
+                    @error('content')
+                        <p class="mt-1 text-sm text-red-600">{{$message}}</p>
+                    @enderror
+                </div>
+                
+                <div class="flex justify-end">
+                    <button type="submit" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        Crear Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </x-app-layout>
